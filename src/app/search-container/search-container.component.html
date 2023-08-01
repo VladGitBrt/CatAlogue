@@ -1,0 +1,29 @@
+<mat-grid-list cols="2" rowHeight="12vh">
+    <mat-grid-tile >
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Breeds</mat-label>
+            <input  type="text"
+                    placeholder="Select Breed"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="breedsFormControl"
+                    [matAutocomplete]="auto"
+                    >
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+                <mat-option *ngFor="let breed of filteredOptions$ | async" [value]="breed.name">
+                    <p>{{breed.name}}</p>
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Items per request</mat-label>
+            <mat-select [(ngModel)]="selectedItems"> 
+              <mat-option *ngFor="let item of itemsCounter" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
